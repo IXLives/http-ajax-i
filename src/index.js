@@ -1,10 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter, Route, Link } from "react-router-dom"
+import axios from 'axios'
 import Home from "./components/Home"
 import Trinkets from "./components/Trinkets"
 import Trinket from "./components/Trinket"
-import data from "./data"
 import "./styles.css"
 
 class App extends React.Component {
@@ -13,9 +13,13 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			items: data
-		})
+		axios.get('http://localhost:3333/items')
+			.then(response => {
+				this.setState({ items: response.data })
+			})	
+			.catch(err => {
+				console.log('Error: ', err)
+			})
 	}
 
 	render() {
