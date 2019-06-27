@@ -26,6 +26,7 @@ export default function(props) {
 			<nav className="trinket-nav">
 				<NavLink to={props.match.url} exact>Description</NavLink>
 				<NavLink to={`${props.match.url}/shipping`} exact>Shipping</NavLink>
+				<NavLink to={`/edit/${item.id}`}>Edit</NavLink> 
 			</nav>
 
 			<Route path={props.match.path} exact render={() => <Description description={item.description} />} />
